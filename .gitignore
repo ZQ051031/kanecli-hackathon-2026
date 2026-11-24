@@ -1,0 +1,4 @@
+node_modules/
+.testmuai/
+kane-results/*
+!kane-results/README.md

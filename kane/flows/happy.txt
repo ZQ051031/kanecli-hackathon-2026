@@ -1,0 +1,1 @@
+Verify the Recovery lab shows Normal. Add one Trail Rucksack to the cart using its Add button. Click Go to checkout. Fill Full name with Alex Morgan and Email address with alex@example.com. Click Pay $68.00 once. Verify that the Checkout panel shows the heading "Order confirmed", a single order reference starting with FW-, and "$68.00 paid with the demo card."

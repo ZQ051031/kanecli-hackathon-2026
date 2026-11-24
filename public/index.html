@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A demo storefront that can recover from simulated checkout failures.">
+  <title>Fieldwork Supply · Checkout Healer</title>
+  <link rel="icon" href="assets/rucksack.webp">
+  <link rel="stylesheet" href="store.css">
+  <script type="module" src="store.mjs"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell masthead-inner">
+      <a class="brand" href="./" aria-label="Fieldwork Supply home"><span class="brand-mark" aria-hidden="true">✳</span> fieldwork<span class="brand-period">.</span></a>
+      <nav aria-label="Store">
+        <a href="#products">Shop</a>
+        <a href="#recovery">Recovery lab</a>
+      </nav>
+      <a class="cart-link" href="#checkout-panel">Cart <span id="cart-count" aria-live="polite">0</span></a>
+    </div>
+  </header>
+
+  <main class="shell layout">
+    <div class="catalog">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-text">
+          <p class="eyebrow"><span aria-hidden="true">✳</span> FIELDWORK SUPPLY</p>
+          <h1 id="hero-title">Good gear<br>for getting out.</h1>
+          <p>Everyday essentials for the long way home.</p>
+          <a href="#products">Explore gear <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-photo"><img src="assets/landscape.webp" alt="A winding trail through grassy highland hills" width="960" height="640"></div>
+      </section>
+
+      <section class="products" id="products" aria-labelledby="products-title">
+        <div class="section-heading">
+          <h2 id="products-title">Trail essentials</h2>
+          <span>03 items</span>
+        </div>
+        <div class="product-grid" id="product-list"></div>
+      </section>
+    </div>
+
+    <div class="sidebar">
+      <section class="checkout-panel" id="checkout-panel" aria-labelledby="checkout-title">
+        <div class="panel-header">
+          <span class="panel-icon" aria-hidden="true">↗</span>
+          <div><h2 id="checkout-title" tabindex="-1">Your cart</h2><p>Simulated checkout</p></div>
+        </div>
+
+        <div id="shopping-view">
+          <ul class="cart-items" id="cart-items" aria-label="Cart items"></ul>
+          <div class="empty-cart" id="empty-cart">Your cart is empty.<br>Add some gear to get started.</div>
+          <div class="cart-total"><span>Total</span><strong id="cart-total">$0.00</strong></div>
+          <button class="button primary" id="open-checkout" type="button" disabled>Go to checkout <span aria-hidden="true">→</span></button>
+        </div>
+
+        <form id="checkout-form" novalidate hidden>
+          <button class="text-button" id="back-to-cart" type="button">← Back to cart</button>
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" placeholder="Alex Morgan" maxlength="100" aria-describedby="checkout-error" required>
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="alex@example.com" maxlength="254" spellcheck="false" aria-describedby="checkout-error" required>
+          </div>
+          <div class="demo-card"><span aria-hidden="true">▤</span><div><strong>Demo card</strong><small>Visa ending in 4242</small></div></div>
+          <p class="checkout-error" id="checkout-error" role="alert" hidden></p>
+          <button class="button primary" id="pay" type="submit">Pay <span id="pay-total"></span><span aria-hidden="true">→</span></button>
+        </form>
+
+        <div class="confirmation" id="confirmation" hidden>
+          <span class="confirmation-mark" aria-hidden="true">✓</span>
+          <p id="order-summary"></p>
+          <p class="order-id">Order <strong id="order-id"></strong></p>
+          <button class="button secondary" id="new-order" type="button">Keep shopping <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="sr-only" id="cart-announcement" role="status"></p>
+        <p class="sr-only" id="payment-announcement" role="status"></p>
+      </section>
+
+      <section class="lab" id="recovery" aria-labelledby="lab-title">
+        <div class="lab-header">
+          <div><p class="eyebrow">CHECKOUT HEALER</p><h2 id="lab-title">Recovery lab</h2></div>
+          <span class="lab-status" id="lab-status">Normal</span>
+        </div>
+        <label class="toggle-row">
+          <span>Simulate failures</span>
+          <input id="simulate-failures" class="switch" type="checkbox" role="switch">
+        </label>
+        <div class="policy-row" id="policy-row" hidden>
+          <label for="policy">Recovery policy</label>
+          <select id="policy">
+            <option value="both">Auto-heal both faults</option>
+            <option value="email">Repair email only</option>
+            <option value="payment">Retry payment only</option>
+            <option value="off">Off · reproduce failures</option>
+          </select>
+        </div>
+        <div class="log-heading"><h3>Recovery log</h3></div>
+        <div class="log" role="log" aria-label="Recovery log">
+          <p id="empty-log">No recovery events yet.</p>
+          <ol id="recovery-events"></ol>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="shell footer">
+    <span>Fieldwork Supply</span>
+    <span>Checkout Healer · Demo orders only</span>
+  </footer>
+</body>
+</html>
